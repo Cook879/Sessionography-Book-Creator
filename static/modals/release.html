@@ -1,0 +1,63 @@
+<div id="release-modal" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Release form</h4>
+			</div>
+			<div id="modal-release-form">
+				<div class="modal-body">
+					<div class="modal-body-error">
+						<p id="modal-release-error"></p>
+					</div>
+					<div class="modal-body-success">
+						<p id="modal-release-success"></p>
+					</div>
+
+					<input id="modal-release-id" type="hidden"/>
+					<input id="modal-release-caller" type="hidden"/>
+					<label class="form-required">Title:</label> <input id="modal-release-title" type="text"/>
+					<br/>
+					<br/>
+					<input id="modal-release-label-id" type="hidden"/>
+					<label>Label:</label> <input id="modal-release-label" type="text"/>
+					<button id="btn-release-label-edit" type="button" class="btn" data-toggle="modal"><span
+							class="glyphicon glyphicon-pencil"></span></button>
+					<button id="btn-release-label-new" type="button" class="btn" data-toggle="modal"><span
+							class="glyphicon glyphicon-plus"></span></button>
+					<br/>
+					<br/>
+					<label>Year:</label> <input id="modal-release-year" type="text"/>
+					<br/>
+					<br/>
+					<label>Format:</label> <select id="modal-release-format"></select>
+					<button id="btn-release-format-edit" type="button" class="btn" data-toggle="modal">
+						<span class="glyphicon glyphicon-pencil"></span>
+					</button>
+					<button id="btn-release-format-new" type="button" class="btn" data-toggle="modal">
+						<span class="glyphicon glyphicon-plus"></span>
+					</button>
+					<br/>
+					<br/>
+					<label>All:</label> <input id="modal-release-all" type="checkbox"/>
+					<br/>
+					<i>Note: Designed for key releases, if checked it indicates that this recording is available on all
+						releases of this album.<br/>
+						If selected, the values you supply for year and format will be ignored.</i>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="modal-release-submit" class="btn btn-default">Submit</button>
+					<button type="button" id="modal-release-cancel" class="btn btn-default" data-dismiss="modal">
+						Cancel
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="div-modal-label-release"></div>
+<div id="div-modal-format"></div>

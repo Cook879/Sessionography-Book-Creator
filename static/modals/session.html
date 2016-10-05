@@ -1,0 +1,224 @@
+<html>
+<head>
+	<title>Sessionography Generator - Web Interface</title>
+
+	<!-- Libraries -->
+	<script src="../lib/jquery-3.1.0.min.js"></script>
+	<script src="../lib/jquery-ui.min.js"></script>
+	<link rel="stylesheet" href="../lib/jquery-ui.min.css"/>
+	<link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.min.css"/>
+	<script src="../lib/bootstrap/js/bootstrap.min.js"></script>
+	<script src="../lib/jquery.autocomplete.min.js"></script>
+
+	<script src="../js/index.js"></script>
+	<link rel="stylesheet" href="../css/main.css"/>
+
+	<script src="js/session.js"></script>
+</head>
+
+<body>
+<div id="session-modal">
+	<h1>Session editor</h1>
+	<div id="modal-session-form">
+		<div class="modal-body-error">
+			<p id="modal-session-error"></p>
+		</div>
+		<div class="modal-body-success">
+			<p id="modal-session-success"></p>
+		</div>
+		<div>
+			<input id="modal-session-id" type="hidden"/>
+			<label class="form-required">Display date:</label> <input id="modal-session-display-date" type="text"/>
+			<br/>
+			<i>Note: Date as you want it displayed to readers.</i>
+			<br/>
+			<br/>
+
+			<label class="form-required">Section:</label> <select id="modal-session-section"></select>
+			<button id="btn-section-edit" type="button" class="btn" data-toggle="modal">
+				<span class="glyphicon glyphicon-pencil"></span>
+			</button>
+			<button id="btn-section-new" type="button" class="btn" data-toggle="modal">
+				<span class="glyphicon glyphicon-plus"></span>
+			</button>
+			<br/>
+			<i>Note: This is used to decide what chapter of the book the session appears in.</i>
+			<br/>
+			<br/>
+
+			<label class="form-required">Date:</label> <input id="modal-session-date" type="datetime-local"/>
+			<br/>
+			<i>Note: Used for sorting, not for display - see display date for that</i>
+			<br/>
+			<br/>
+
+			<input id="modal-session-location-id" hidden="true"/>
+			<label class="form-required">Location:</label> <input id="modal-session-location" type="text"/>
+			<button id="btn-location-edit" type="button" class="btn" data-toggle="modal">
+				<span class="glyphicon glyphicon-pencil"></span>
+			</button>
+			<button id="btn-location-new" type="button" class="btn" data-toggle="modal">
+				<span class="glyphicon glyphicon-plus"></span>
+			</button>
+			<br/>
+			<br/>
+
+			<input id="modal-session-with-id" hidden="true"/>
+			<label class="form-required">Artist title:</label> <input id="modal-session-with" type="text"/>
+			<button id="btn-with-edit" type="button" class="btn" data-toggle="modal">
+				<span class="glyphicon glyphicon-pencil"></span>
+			</button>
+			<button id="btn-with-new" type="button" class="btn" data-toggle="modal">
+				<span class="glyphicon glyphicon-plus"></span>
+			</button>
+			<br/>
+			<i>Note: This is displayed at the top of the session and is kinda like the credited name
+				of the record, e.g. "Frank Sinatra with Nelson Riddle and Orchestra"</i>
+			<br/>
+			<br/>
+
+			<label class="form-required">Type:</label> <select id="modal-session-session-type"></select>
+			<button id="btn-session-type-edit" type="button" class="btn" data-toggle="modal">
+				<span class="glyphicon glyphicon-pencil"></span>
+			</button>
+			<button id="btn-session-type-new" type="button" class="btn" data-toggle="modal">
+				<span class="glyphicon glyphicon-plus"></span>
+			</button>
+			<br/>
+			<i>Note: This could be something like Studio, Film, Radio, Concert, etc.</i>
+			<br/>
+			<br/>
+
+			<label>Session number:</label> <input id="modal-session-session-number" type="text"/>
+			<br/>
+			<br/>
+
+
+			<hr/>
+			<strong>If the session was for a particular album, record label, film, radio show or television show (or
+				something else noteworthy), select it below</strong>
+			<br/>
+			<br/>
+			<input type="radio" name="for" value="album"><label>Album</label><br/>
+			<input type="radio" name="for" value="label"><label>Label</label><br/>
+			<input type="radio" name="for" value="film"><label>Film</label><br/>
+			<input type="radio" name="for" value="radio"><label>Radio</label><br/>
+			<input type="radio" name="for" value="television"><label>Television</label><br/>
+			<input type="radio" name="for" value="other"><label>Other</label><br/>
+			<input type="radio" name="for" value="none" checked><label>None</label><br/>
+
+			<br/>
+			<br/>
+			<div id="modal-session-div-label" class="hidden">
+				<input id="modal-session-label-id" hidden="true"/>
+				<label>Label:</label> <input id="modal-session-label" type="text"/>
+				<button id="btn-label-edit" type="button" class="btn" data-toggle="modal">
+					<span class="glyphicon glyphicon-pencil"></span>
+				</button>
+				<button id="btn-label-new" type="button" class="btn" data-toggle="modal">
+					<span class="glyphicon glyphicon-plus"></span>
+				</button>
+				<br/>
+				<i>The record label the session was for. If you choose an album, this info is covered within
+					that</i>
+			</div>
+
+			<div id="modal-session-div-album" class="hidden">
+				<input id="modal-session-album-id" hidden="true"/>
+				<label>Album:</label> <input id="modal-session-album" type="text"/>
+				<button id="btn-album-edit" type="button" class="btn" data-toggle="modal"><span
+						class="glyphicon glyphicon-pencil"></span>
+				</button>
+				<button id="btn-album-new" type="button" class="btn" data-toggle="modal"><span
+						class="glyphicon glyphicon-plus"></span>
+				</button>
+				<br/>
+				<i>The album the session was for</i>
+			</div>
+
+			<div id="modal-session-div-film" class="hidden">
+				<input id="modal-session-film-id" hidden="true"/>
+				<label>Film:</label> <input id="modal-session-film" type="text"/>
+				<button id="btn-film-edit" type="button" class="btn" data-toggle="modal"><span
+						class="glyphicon glyphicon-pencil"></span></button>
+				<button id="btn-film-new" type="button" class="btn" data-toggle="modal"><span
+						class="glyphicon glyphicon-plus"></span>
+				</button>
+				<br/>
+				<i>The film the session was for</i>
+			</div>
+
+			<div id="modal-session-div-radio" class="hidden">
+				<input id="modal-session-radio-id" hidden="true"/>
+				<label>Radio:</label> <input id="modal-session-radio" type="text"/>
+				<button id="btn-radio-edit" type="button" class="btn" data-toggle="modal"><span
+						class="glyphicon glyphicon-pencil"></span></button>
+				<button id="btn-radio-new" type="button" class="btn" data-toggle="modal"><span
+						class="glyphicon glyphicon-plus"></span>
+				</button>
+				<br/>
+				<i>The radio show the session was for</i>
+			</div>
+
+			<div id="modal-session-div-television" class="hidden">
+				<input id="modal-session-television-id" hidden="true"/>
+				<label>Television:</label> <input id="modal-session-television" type="text"/>
+				<button id="btn-television-edit" type="button" class="btn" data-toggle="modal"><span
+						class="glyphicon glyphicon-pencil"></span></button>
+				<button id="btn-television-new" type="button" class="btn" data-toggle="modal"><span
+						class="glyphicon glyphicon-plus"></span>
+				</button>
+				<br/>
+				<i>The television show the session was for</i>
+			</div>
+
+			<div id="modal-session-div-other" class="hidden">
+				<input id="modal-session-other-id" hidden="true"/>
+				<label>Other:</label> <input id="modal-session-other" type="text"/>
+				<button id="btn-other-edit" type="button" class="btn" data-toggle="modal"><span
+						class="glyphicon glyphicon-pencil"></span>
+				</button>
+				<button id="btn-other-new" type="button" class="btn" data-toggle="modal"><span
+						class="glyphicon glyphicon-plus"></span>
+				</button>
+				<br/>
+				<i>For something not covered in one of the above fields</i>
+			</div>
+			<hr/>
+			<br/>
+			<br/>
+
+			Notes: <textarea id="modal-session-notes"></textarea>
+			<br/>
+		</div>
+		<div>
+			<button type="button" id="modal-session-submit" class="btn btn-default">Submit</button>
+			<button type="button" id="modal-session-cancel" class="btn btn-default" onClick="window.location.reload();">
+				Cancel
+			</button>
+		</div>
+	</div>
+
+	<strong>Please submit your changes above before clicking the below buttons! Otherwise you'll lose all your
+		data!</strong>
+	<br/>
+
+	<button id="btn-session-songs" type="button" class="btn" data-toggle="modal">Songs</button>
+	<button id="btn-session-people" type="button" class="btn" data-toggle="modal">People</button>
+
+</div>
+
+<div id="div-modal-section"></div>
+<div id="div-modal-location"></div>
+<div id="div-modal-album"></div>
+<div id="div-modal-label"></div>
+<div id="div-modal-other"></div>
+<div id="div-modal-radio"></div>
+<div id="div-modal-television"></div>
+<div id="div-modal-session-type"></div>
+<div id="div-modal-film"></div>
+<div id="div-modal-with"></div>
+<div id="div-modal-studio"></div>
+
+</body>
+</html>

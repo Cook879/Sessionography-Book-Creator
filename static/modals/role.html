@@ -1,0 +1,53 @@
+<div id="role-modal" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Role form</h4>
+			</div>
+			<div id="modal-role-form">
+				<div class="modal-body">
+					<div class="modal-body-error">
+						<p id="modal-role-error"></p>
+					</div>
+					<div class="modal-body-success">
+						<p id="modal-role-success"></p>
+					</div>
+
+					<input id="modal-role-id" type="hidden"/>
+					<input id="modal-role-caller" type="hidden"/>
+					<input id="modal-person-caller-type" type="hidden"/>
+					<label class="form-required">Name:</label> <input id="modal-role-name" type="text"/>
+					<br/>
+					<br/>
+					<label class="form-required">Abbreviation:</label> <input id="modal-role-abbreviation" type="text"/>
+					<br/>
+					<br/>
+					<label class="form-required">Position:</label> <input id="modal-role-position" type="number"/>
+					<br/>
+					<i>Note: This is used to sort the instruments in order, along with role_group<br/>The combination of
+						role_group and position should be unique.</i>
+					<br/>
+					<br/>
+					<label class="form-required">Role Group:</label> <select id="modal-role-role-group"></select>
+					<button id="btn-role-group-edit" type="button" class="btn" data-toggle="modal"><span
+							class="glyphicon glyphicon-pencil"></span></button>
+					<button id="btn-role-group-new" type="button" class="btn" data-toggle="modal"><span
+							class="glyphicon glyphicon-plus"></span></button>
+					<br/>
+					<i>Note: This is used to sort the instruments in order, along with role_group<br/>It also is used to
+						categorize the role.<br/>The combination of role_group and position should be unique.</i>
+					<br/>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="modal-role-submit" class="btn btn-default">Submit</button>
+					<button type="button" id="modal-role-cancel" class="btn btn-default" data-dismiss="modal">Cancel
+					</button>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>

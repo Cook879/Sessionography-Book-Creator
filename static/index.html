@@ -1,0 +1,51 @@
+<html>
+<head>
+	<title>Sessionography Generator - Web Interface</title>
+
+	<!-- Libraries -->
+	<script src="lib/jquery-3.1.0.min.js"></script>
+	<script src="lib/jquery-ui.min.js"></script>
+	<link rel="stylesheet" href="lib/jquery-ui.min.css"/>
+	<link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css"/>
+	<script src="lib/bootstrap/js/bootstrap.min.js"></script>
+	<script src="lib/jquery.autocomplete.min.js"></script>
+
+	<script src="js/index.js"></script>
+	<link rel="stylesheet" href="css/main.css"/>
+</head>
+
+<body>
+
+<div>
+	<input id="index-session-id" type="hidden"/>
+	<label>Select a session:</label> <input id="index-session" type="text"/>
+	<button id="btn-session-edit" type="button" class="btn" data-toggle="modal"><span
+			class="glyphicon glyphicon-pencil"></span></button>
+	<label>Or add a new one:</label>
+	<button id="btn-session-new" type="button" class="btn" data-toggle="modal"><span
+			class="glyphicon glyphicon-plus"></span></button>
+	<br/>
+	<br/>
+
+	<hr>
+
+	Click the button below to edit the strings in the book, including title and author.
+	<button id="btn-book-string" type="button" class="btn" data-toggle="modal">Edit strings</button>
+
+	<br/>
+	<br/>
+
+	<hr>
+
+	Click the button below to generate the books.
+	<button id="btn-book-create" type="button" class="btn" data-toggle="modal">Create books!</button>
+	<div class="modal-body-error">
+		<p id="index-error"></p>
+	</div>
+	<div class="modal-body-success">
+		<p id="index-success"></p>
+	</div>
+
+</div>
+</body>
+</html>

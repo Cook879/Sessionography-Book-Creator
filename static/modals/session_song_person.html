@@ -1,0 +1,60 @@
+<html>
+<head>
+	<title>Sessionography Generator - Web Interface</title>
+
+	<!-- Libraries -->
+	<script src="../lib/jquery-3.1.0.min.js"></script>
+	<script src="../lib/jquery-ui.min.js"></script>
+	<link rel="stylesheet" href="../lib/jquery-ui.min.css"/>
+	<link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.min.css"/>
+	<script src="../lib/bootstrap/js/bootstrap.min.js"></script>
+	<script src="../lib/jquery.autocomplete.min.js"></script>
+
+	<script src="../js/index.js"></script>
+	<link rel="stylesheet" href="../css/main.css"/>
+
+	<script src="js/session_song_person.js"></script>
+</head>
+
+<body>
+<div id="session-song-person-modal">
+	<h1>Session personnel editor</h1>
+	<div id="modal-session-song-person-form">
+		<div class="modal-body-error">
+			<p id="modal-session-song-person-error"></p>
+		</div>
+		<div class="modal-body-success">
+			<p id="modal-session-song-person-success"></p>
+		</div>
+		<div>
+			<table id="modal-session-song-person-table">
+				<thead>
+				<tr>
+					<th><label class="form-required">Person</label></th>
+					<th><label class="form-required">Role</label></th>
+					<th><label class="form-required">Exceptions</label></th>
+					<th><label>Notes</label></th>
+				</tr>
+				</thead>
+				<tbody>
+
+				</tbody>
+			</table>
+			<button type="button" id="modal-session-song-person-add" class="btn btn-default">Add another row</button>
+		</div>
+		<div>
+			<button type="button" id="modal-session-song-person-submit" class="btn btn-default">Submit</button>
+			<button type="button" id="modal-session-song-person-cancel" class="btn btn-default"
+			        onClick="window.location.reload();">Cancel
+			</button>
+		</div>
+	</div>
+</div>
+<div id="div-modal-person"></div>
+<div id="div-modal-role"></div>
+<div id="div-modal-role-group"></div>
+<div id="div-modal-note"></div>
+<div id="div-modal-session-song-person-exceptions"></div>
+
+</body>
+</html>

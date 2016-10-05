@@ -1,0 +1,115 @@
+<div id="take-modal" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Take form</h4>
+			</div>
+			<div id="modal-take-form">
+				<div class="modal-body">
+					<div class="modal-body-error">
+						<p id="modal-take-error"></p>
+					</div>
+					<div class="modal-body-success">
+						<p id="modal-take-success"></p>
+					</div>
+
+					<input id="modal-take-id" type="hidden"/>
+					<input id="modal-take-session-song-id" type="hidden"/>
+					<input id="modal-take-caller" type="hidden"/>
+					<label class="form-required">Title:</label> <input id="modal-take-title" type="text"/>
+					<br/>
+					<i>Note: e.g. "take #1", "studio master", "edited". Something to distinguish the take.</i>
+					<br/>
+					<br/>
+					<label class="form-required">Length:</label> <input id="modal-take-length" type="text"/>
+					<br/>
+					<br/>
+					<label class="form-required">Position:</label> <input id="modal-take-position" type="number"/>
+					<br/>
+					<i>Note: Must be unique among the takes for that particular session song.</i>
+					<br/>
+					<br/>
+
+					<input id="modal-take-original-release-id" type="hidden"/>
+					<label>Original release:</label> <input id="modal-take-original-release" type="text"/>
+					<button id="btn-take-original-release-edit" type="button" class="btn" data-toggle="modal"><span
+							class="glyphicon glyphicon-pencil"></span></button>
+					<button id="btn-take-original-release-new" type="button" class="btn" data-toggle="modal"><span
+							class="glyphicon glyphicon-plus"></span></button>
+					<br/>
+					<i>Note: The original release of the recording.</i>
+					<br/>
+					<br/>
+					<input id="modal-take-key-release-id" type="hidden"/>
+					<label>Key release:</label> <input id="modal-take-key-release" type="text"/>
+					<button id="btn-take-key-release-edit" type="button" class="btn" data-toggle="modal"><span
+							class="glyphicon glyphicon-pencil"></span></button>
+					<button id="btn-take-key-release-new" type="button" class="btn" data-toggle="modal"><span
+							class="glyphicon glyphicon-plus"></span></button>
+					<br/>
+					<i>Note: The key release is intended to be the best way for someone to get hold of this song - so
+						choose a greatest hits album over a complete box set (and a CD over vinyl).<br/>
+						If the same as original release, enter the original release again.</i>
+					<br/>
+					<br/>
+
+					<input id="modal-take-film-id" hidden="true"/>
+					<label>Film:</label> <input id="modal-take-film" type="text"/>
+					<button id="btn-film-edit" type="button" class="btn" data-toggle="modal"><span
+							class="glyphicon glyphicon-pencil"></span></button>
+					<button id="btn-film-new" type="button" class="btn" data-toggle="modal"><span
+							class="glyphicon glyphicon-plus"></span>
+					</button>
+					<br/>
+					<i>Note: If it was a take that appeared in a film, the film the take was for. This can be combined
+						with original and key releases.</i>
+					<br/>
+					<br/>
+
+					<input id="modal-take-radio-id" hidden="true"/>
+					<label>Radio:</label> <input id="modal-take-radio" type="text"/>
+					<button id="btn-radio-edit" type="button" class="btn" data-toggle="modal"><span
+							class="glyphicon glyphicon-pencil"></span></button>
+					<button id="btn-radio-new" type="button" class="btn" data-toggle="modal"><span
+							class="glyphicon glyphicon-plus"></span>
+					</button>
+					<br/>
+					<i>Note: If it was a take that appeared in a radio show, the radio show the take was for. This can
+						be combined with original and key releases.</i>
+					<br/>
+					<br/>
+
+					<input id="modal-take-television-id" hidden="true"/>
+					<label>Television:</label> <input id="modal-take-television" type="text"/>
+					<button id="btn-television-edit" type="button" class="btn" data-toggle="modal"><span
+							class="glyphicon glyphicon-pencil"></span></button>
+					<button id="btn-television-new" type="button" class="btn" data-toggle="modal"><span
+							class="glyphicon glyphicon-plus"></span>
+					</button>
+					<br/>
+					<i>Note: If it was a take that appeared in a television show, the television show the take was for.
+						This can be combined with original and key releases.</i>
+					<br/>
+					<br/>
+
+
+					Notes: <textarea id="modal-take-notes"></textarea>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="modal-take-submit" class="btn btn-default">Submit</button>
+					<button type="button" id="modal-take-cancel" class="btn btn-default" data-dismiss="modal">Cancel
+					</button>
+				</div>
+				<hr>
+			</div>
+		</div>
+
+	</div>
+</div>
+<div id="div-modal-release"></div>
+<div id="div-modal-film"></div>
+<div id="div-modal-radio"></div>
+<div id="div-modal-television"></div>

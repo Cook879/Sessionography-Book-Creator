@@ -1,0 +1,37 @@
+<div id="person-modal" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Person form</h4>
+			</div>
+			<div id="modal-person-form">
+				<div class="modal-body">
+					<div class="modal-body-error">
+						<p id="modal-person-error"></p>
+					</div>
+					<div class="modal-body-success">
+						<p id="modal-person-success"></p>
+					</div>
+
+					<input id="modal-person-id" type="hidden"/>
+					<input id="modal-person-caller" type="hidden"/>
+					<input id="modal-person-caller-type" type="hidden"/>
+					<label>First name:</label> <input id="modal-person-first-name" type="text"/>
+					<br/>
+					<label class="form-required">Last name:</label> <input id="modal-person-last-name" type="text"/>
+					<br/>
+					<i>Note: First name and last name combination must be unique.</i>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="modal-person-submit" class="btn btn-default">Submit</button>
+					<button type="button" id="modal-person-cancel" class="btn btn-default" data-dismiss="modal">Cancel
+					</button>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>

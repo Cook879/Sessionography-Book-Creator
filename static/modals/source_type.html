@@ -1,0 +1,41 @@
+<div id="source-type-modal" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Source type form</h4>
+			</div>
+			<div id="modal-source-type">
+				<div class="modal-body">
+					<div class="modal-body-error">
+						<p id="modal-source-type-error"></p>
+					</div>
+					<div class="modal-body-success">
+						<p id="modal-source-type-success"></p>
+					</div>
+
+					<input id="modal-source-type-id" type="hidden"/>
+					<label class="form-required">Name:</label> <input id="modal-source-type-name" type="text"/>
+					<br/>
+					<i>Note: Must be unique.</i>
+					<br/>
+					<br/>
+					<label>"From the":</label> <input id="modal-source-type-from-the" type="checkbox"/>
+					<br/>
+					<i>Note: If checked, it indicates that the source type will be preceded by the words "From the",
+						e.g. "From the film"</i>
+					<br/>
+					<br/>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="modal-source-type-submit" class="btn btn-default">Submit</button>
+					<button type="button" id="modal-source-type-cancel" class="btn btn-default" data-dismiss="modal">
+						Cancel
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
