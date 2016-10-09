@@ -44,7 +44,7 @@ public class PersonDaoImpl implements PersonDao {
 	}
 
 	public List<Person> search( String query ) {
-		return entityManager.createQuery( "SELECT e FROM Person e WHERE e.firstName LIKE :query OR e.lastName LIKE :query ORDER by e.firstName, e.lastName" )
+		return entityManager.createQuery( "SELECT e FROM Person e WHERE CONCAT(COALESCE(e.firstName, ''), ' ', e.lastName) LIKE :query ORDER by e.firstName, e.lastName" )
 				       .setParameter( "query", "%" + query + "%" )
 				       .getResultList();
 	}

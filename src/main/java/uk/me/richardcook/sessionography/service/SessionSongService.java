@@ -39,7 +39,7 @@ public class SessionSongService {
 		if ( sessionSong.getMaster() != null && sessionSong.getMaster().equals( "" ) )
 			sessionSong.setMaster( null );
 
-		if ( sessionSong.getMaster() != null && sessionSong.getNotes().equals( "" ) )
+		if ( sessionSong.getNotes() != null && sessionSong.getNotes().equals( "" ) )
 			sessionSong.setNotes( null );
 
 		// SessionView can't be null

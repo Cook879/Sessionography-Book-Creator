@@ -70,31 +70,4 @@ $( document ).ready( function () {
 		$( "#modal-session-song-person-exceptions-cancel" ).trigger( "click" );
 
 	} );
-
-	function submit() {
-		for ( var k = 1; k < i; k++ ) {
-			var person = $( '#modal-session-song-person-person-id-' + k ).val();
-			var role = $( '#modal-session-song-person-role-id-' + k ).val();
-
-			if ( person == null || role == null ) {
-				continue;
-			}
-
-			var object = { "person": person, "role": role };
-
-			var songsStr = $( '#modal-session-song-person-songs-' + k ).val();
-			var songs = songsStr.split( "-" );
-
-			for ( var p = 0; p < songs.length; p++ ) {
-				object[ 'sessionSong' ] = songs[ p ];
-				ajaxRequest( '/api/session_song_person', 'POST', object, $( '#modal-session-song-person-success' ), $( '#modal-session-song-person-error' ), processSubmit );
-			}
-		}
-	}
-
-	function processSubmit( data ) {
-		$( '.modal-body-success' ).append( $( '<p>' ).text( "Session song person with person " + data.person + ", role " + data.role +
-			" and session song " + data.sessionSong + " saved, id is " + data.id ) );
-	}
-
 } );

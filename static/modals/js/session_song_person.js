@@ -7,16 +7,21 @@ $( document ).ready( function () {
 	var $id = GetURLParameter( "id" );
 
 	var notes = [];
+	var sessionSongs = [];
 
 	if ( $id != "" && $id != undefined ) {
 		$.getJSON( '/api/session_song_person/session/' + $id, function ( result ) {
-			var sessionSongs = [];
 			$.each( result.sessionSongs, function ( index, value ) {
 				sessionSongs.push( value.id );
 			} );
 
 			notes = result.notes;
 
+			if( result.sessionSongPersons.length == 0 ) {
+				for( var p = 0; p < 30; p++ ) {
+					createNewTableRow();
+				}
+			}
 			$.each( result.sessionSongPersons, function ( index, value ) {
 				makeTableRow( notes );
 
@@ -38,8 +43,10 @@ $( document ).ready( function () {
 				} );
 
 				$( '#modal-session-song-person-songs-' + i ).val( optionId );
+
 				if ( value.note != null )
 					$( '#modal-session-song-person-note-' + i ).val( value.note.id );
+
 				i++;
 			} );
 		} );
@@ -233,7 +240,7 @@ $( document ).ready( function () {
 				$( '#modal-session-song-person-role-id-' + j ).val( suggestion.data );
 			}
 		} );
-		select = $( '#modal-session-song-person-note-' + j );
+		var select = $( '#modal-session-song-person-note-' + j );
 		select.append( '<option selected></option>' );
 		$.each( notes, function ( index, value ) {
 			select.append( '<option value=' + value.id + '>' + value.note + '</option>' );
@@ -242,12 +249,30 @@ $( document ).ready( function () {
 	}
 
 	$( '#modal-session-song-person-add' ).click( function () {
-		makeTableRow( notes );
-		i++;
+		createNewTableRow();
 	} );
 
+	$( '#modal-session-song-person-refresh' ).click( function () {
+		getNotes(null, null);
+	} );
+
+	function createNewTableRow() {
+		makeTableRow( notes );
+
+		var optionId = '';
+		$.each( sessionSongs, function ( index, value ) {
+			if ( optionId != '' )
+				optionId += '-';
+			optionId += value;
+		} );
+
+		$( '#modal-session-song-person-songs-' + i ).val( optionId );
+
+		i++;
+	}
+
 	$( '#modal-session-song-person-submit' ).click( function () {
-		$( '.modal-body-success' ).empty();
+		$( '#modal-body-success-session-song-person' ).empty();
 		$.ajax( {
 			url: '/api/session_song_person/session/' + $id,
 			type: 'DELETE',
@@ -256,11 +281,11 @@ $( document ).ready( function () {
 				'Content-Type': 'application/json'
 			},
 			success: function ( result, status, data ) {
-				$( '.modal-body-success' ).append( $( '<p>' ).text( "Deleted all session song person details for this session" ) );
+				$( '#modal-body-success-session-song-person' ).append( $( '<p>' ).text( "Deleted all session song person details for this session" ) );
 				submit();
 			},
 			error: function ( result, status, xhr ) {
-				$( '.modal-body-success' ).append( $( '<p>' ).text( "Deleted all session song person details for this session" ) );
+				$( '#modal-body-success-session-song-person' ).append( $( '<p>' ).text( "Deleted all session song person details for this session" ) );
 				submit();
 			}
 		} );
@@ -271,12 +296,13 @@ $( document ).ready( function () {
 		for ( var k = 1; k < i; k++ ) {
 			var person = $( '#modal-session-song-person-person-id-' + k ).val();
 			var role = $( '#modal-session-song-person-role-id-' + k ).val();
+			var note = $( '#modal-session-song-person-note-'+k).val();
 
 			if ( person == null || role == null ) {
 				continue;
 			}
 
-			var object = { "person": person, "role": role };
+			var object = { "person": person, "role": role, "note": note };
 
 			var songsStr = $( '#modal-session-song-person-songs-' + k ).val();
 			var songs = songsStr.split( "-" );
@@ -289,7 +315,7 @@ $( document ).ready( function () {
 	}
 
 	function processSubmit( data ) {
-		$( '.modal-body-success' ).append( $( '<p>' ).text( "Session song person with person " + data.person + ", role " + data.role +
+		$( '#modal-body-success-session-song-person' ).append( $( '<p>' ).text( "Session song person with person " + data.person + ", role " + data.role +
 			" and session song " + data.sessionSong + " saved, id is " + data.id ) );
 	}
 
@@ -327,8 +353,10 @@ function getNotes( caller, providedVal ) {
 		var selectVal = select.val();
 
 		select.find( 'option' ).remove();
+		select.append( '<option selected></option>' );
 
 		$.getJSON( '/api/session_song_person/session/' + $id + '/notes', function ( result ) {
+
 			$.each( result, function ( id, item ) {
 				select.append( '<option value="' + item.id + '">' + item.note + '</option>' );
 			} );

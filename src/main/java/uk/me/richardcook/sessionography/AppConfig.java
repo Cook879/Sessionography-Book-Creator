@@ -19,7 +19,7 @@ public class AppConfig {
 	public DataSource getDataSource() {
 		BasicDataSource dataSource = new BasicDataSource();
 		dataSource.setDriverClassName( "com.mysql.jdbc.Driver" );
-		dataSource.setUrl( "jdbc:mysql://localhost:3306/sinatra_book_3" );
+		dataSource.setUrl( "jdbc:mysql://localhost:3306/sinatra_book_2" );
 		dataSource.setUsername( "root" );
 		dataSource.setPassword( "" );
 		return dataSource;

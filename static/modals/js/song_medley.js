@@ -16,6 +16,8 @@ $( document ).ready( function () {
 				$( '#modal-song-medley-title-' + i ).val( value.song.shortTitle );
 				$( '#modal-song-medley-id-' + i ).val( value.song.id );
 				$( '#modal-song-medley-position-' + i ).val( value.position );
+				$( '#modal-song-medley-parody-' + i ).prop( 'checked', value.parody );
+
 				i++;
 			} );
 		} );
@@ -98,6 +100,13 @@ $( document ).ready( function () {
 						.attr( "type", "number" )
 					)
 				)
+				.append( $( '<td>' )
+					.append( $( '<input>' )
+						.addClass( "modal-song-medley-parody" )
+						.attr( "id", "modal-song-medley-parody-" + j )
+						.attr( "type", "checkbox" )
+					)
+				)
 			);
 		$( '#modal-song-medley-title-' + j ).devbridgeAutocomplete( {
 			serviceUrl: '/api/autocomplete/song',
@@ -141,10 +150,10 @@ $( document ).ready( function () {
 		for ( var k = 1; k < i; k++ ) {
 			var position = $( '#modal-song-medley-position-' + k ).val();
 			var song = $( '#modal-song-medley-id-' + k ).val();
+			var parody = $( '#modal-song-medley-parody-' + k ).prop( 'checked' );
 
 			if ( song != null && song != "" ) {
-				var object = { "sessionSong": $sessionSong, "song": song, "position": position };
-
+				var object = { "sessionSong": $sessionSong, "song": song, "position": position, "parody": parody };
 				ajaxRequest( '/api/session_song_song', 'POST', object, $( '#modal-song-medley-success' ), $( '#modal-song-medley-error' ), processSubmit );
 			}
 		}
@@ -154,7 +163,7 @@ $( document ).ready( function () {
 		$( '#modal-body-success-medley' ).append( $( '<p>' ).text( "Song with id " + data.song + ", position " + data.position +
 			" added to session song " + data.sessionSong + ", id is " + data.id ) );
 		$( '#modal-session-song-song-id-' + $callerId ).val( null );
-		$( '#modal-session-song-song-' + $callerId ).val( "Medley" );
+		$( '#modal-session-song-song-' + $callerId ).val( "Medley/Parody" );
 		$( '#modal-session-song-medley-' + $callerId ).prop( 'checked', true );
 		$( '#modal-session-song-song-id-' + $callerId ).attr( 'disabled', true );
 		$( '#modal-session-song-song-' + $callerId ).attr( 'disabled', true );

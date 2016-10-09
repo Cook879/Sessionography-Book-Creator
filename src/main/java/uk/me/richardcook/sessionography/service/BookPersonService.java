@@ -79,7 +79,7 @@ public class BookPersonService {
 
 			for ( SessionSongPersonDetails sessionSongPersonDetails : sessionSongPersonDetailses ) {
 				book.printTabJoin( BookFile.dateFormat.format( sessionSongPersonDetails.getDate() ),
-						sessionSongs.get( sessionSongPersonDetails.getSessionSong() ).toShortString(),
+						sessionSongs.get( sessionSongPersonDetails.getSessionSong() ).toShortString(book),
 						sessionSongPersonDetails.getRole() );
 			}
 

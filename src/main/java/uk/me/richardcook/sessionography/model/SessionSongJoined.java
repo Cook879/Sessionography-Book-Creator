@@ -4,6 +4,7 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
+import java.awt.print.Book;
 import java.io.Serializable;
 import java.util.List;
 
@@ -32,6 +33,9 @@ public class SessionSongJoined implements Serializable {
 
 	@Column( name = "notes" )
 	private String notes;
+
+	@Column( name = "reprise" )
+	private boolean reprise;
 
 	// Work around for unable to fetch multiple bags error
 	@LazyCollection( LazyCollectionOption.FALSE )
@@ -95,36 +99,43 @@ public class SessionSongJoined implements Serializable {
 		this.session = session;
 	}
 
-	@Override
-	public String toString() {
+	public String toString( BookFile book, boolean shortTitle ) {
 		String songTitles = "";
 
 		if ( sessionSongSongs.size() > 1 ) {
 			for ( int i = 0; i < sessionSongSongs.size(); i++ ) {
 				SongJoinedBook song = sessionSongSongs.get( i ).getSong();
 				songTitles += song.getShortTitle();
+				if ( !shortTitle && sessionSongSongs.get(i).isParody() ) {
+					songTitles += " (" + book.getBookString( "parody" ) + ")";
+				}
 				if ( i != sessionSongSongs.size() - 1 ) {
 					songTitles += " / ";
 				}
 			}
 		} else {
 			songTitles = sessionSongSongs.get( 0 ).getSong().getTitle();
+			if( !shortTitle && sessionSongSongs.get(0).isParody() )
+				songTitles += " (" + book.getBookString( "parody" ) + ")";
 		}
+
 		return songTitles;
 	}
 
-	public String toBookString(String masterStr) {
-		String songTitles = toString();
+	public void toBookString(String masterStr, BookFile book) {
+		String songTitles = toString(book, false);
+		if( reprise )
+			songTitles += " (" + book.getBookString( "reprise" ) + ")";
 		if ( master != null )
-			return BookFile.createSubSection( songTitles + " (" + masterStr + " #" + master + ")" );
-
-		return BookFile.createSubSection( songTitles );
+			book.printSubSection( songTitles + " (" + masterStr + " #" + master + ")" );
+		else
+			book.printSubSection( songTitles );
 	}
 
-	public String toShortString() {
+	public String toShortString(BookFile book) {
 		String toString;
 		if ( sessionSongSongs.size() > 1 )
-			toString = toString();
+			toString = toString(book, true);
 		else
 			toString = sessionSongSongs.get( 0 ).getSong().getShortTitle();
 		if ( toString.length() > 35 )
@@ -132,4 +143,11 @@ public class SessionSongJoined implements Serializable {
 		return toString;
 	}
 
+	public boolean isReprise() {
+		return reprise;
+	}
+
+	public void setReprise( boolean reprise ) {
+		this.reprise = reprise;
+	}
 }

@@ -109,12 +109,22 @@ public class BookFile extends PrintWriter {
 		return str;
 	}
 
+	public static String createLongTable( char align, int i ) {
+		String str = "\\begin{longtable}[" + align + "]{ ";
+		for ( int j = 0; j < i; j++ ) {
+			str += "l ";
+		}
+		str += "}";
+		return str;
+	}
+
 	public static String createTabJoin( String string1, String string2, String string3 ) {
 		return string1 + " & " + string2 + " & " + string3 + " \\\\";
 	}
 
 	public static String createTabJoin( String string1, String string2, String string3, String string4 ) {
-		return string1 + " & " + string2 + " & " + string3 + " & " + string4 + " \\\\";
+		return removeSpecialCharacters(string1) + " & " + removeSpecialCharacters(string2) + " & " +
+				       removeSpecialCharacters(string3) + " & " + removeSpecialCharacters(string4) + " \\\\";
 	}
 
 	public static String createBeginFootnoteSize() {
@@ -127,6 +137,10 @@ public class BookFile extends PrintWriter {
 
 	public static String createEndSuperTabular() {
 		return "\\end{supertabular}";
+	}
+
+	public static String createEndLongTable() {
+		return "\\end{longtable}";
 	}
 
 	public static String removeSpecialCharacters( String string ) {
@@ -151,7 +165,13 @@ public class BookFile extends PrintWriter {
 		// #9 - _
 		string = string.replaceAll( "_", "\\_" );
 		// #10 - ~
-		return string.replaceAll( "~", "\\textasciitilde" );
+		//string = string.replaceAll( "~", "\\textasciitilde" );
+
+		// And we want some accents
+		string = string.replaceAll( "ñ", "\\\\~{n}");
+		string = string.replaceAll( "ë", "\\\\\"{e}");
+		string = string.replaceAll( "à", "\\\\`{a}" );
+		return string.replaceAll( "é", "\\\\'{e}" );
 	}
 
 	public void setUpDocument( String subtitle, boolean twoCols ) throws Exception {
@@ -165,6 +185,8 @@ public class BookFile extends PrintWriter {
 		println( "\\usepackage[T1]{fontenc}" );
 		println( "\\usepackage{titling}" );
 		println( "\\usepackage{alphalph}" );
+		println ("\\usepackage{longtable}" );
+		println ("\\usepackage{hyperref}" );
 
 		getStyleRules();
 
@@ -221,9 +243,9 @@ public class BookFile extends PrintWriter {
 		printNewLine();
 
 		println( "You can obtain the software to make your own book from ");
-		println( "http://www.richardcook.me.uk/sessionography" );
-		println( "Using this software to make your own book? Let me know at sessionography@richardcook.me.uk" );
-		println( "Need help, found some bugs or have feature requests? Email sessionography@richardcook.me.uk" );
+		println( "\\url{http://www.richardcook.me.uk/sessionography}" );
+		println( "Using this software to make your own book? Let me know at \\href{mailto:sessionography@richardcook.me.uk}{ \\nolinkurl{sessionography@richardcook.me.uk} }" );
+		println( "Need help, found some bugs or have feature requests? Email \\href{mailto:sessionography@richardcook.me.uk}{ \nolinkurl{sessionography@richardcook.me.uk} }" );
 
 		printNewLine();
 		printNewLine();
@@ -328,6 +350,9 @@ public class BookFile extends PrintWriter {
 	public void printSuperTabular( int i ) {
 		println( createSuperTabular( i ) );
 	}
+	public void printLongTable( char align, int i ) {
+		println( createLongTable( align, i ) );
+	}
 
 	public void printTabJoin( String string1, String string2, String string3 ) {
 		println( createTabJoin( string1, string2, string3 ) );
@@ -347,6 +372,10 @@ public class BookFile extends PrintWriter {
 
 	public void printEndSuperTabular() {
 		println( createEndSuperTabular() );
+	}
+
+	public void printEndLongTable() {
+		println( createEndLongTable() );
 	}
 
 	public String getBookString( String name ) {

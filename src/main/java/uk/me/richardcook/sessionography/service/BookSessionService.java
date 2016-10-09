@@ -51,18 +51,23 @@ public class BookSessionService {
 
 			if ( album != null ) {
 				book.printLabel( book.getBookString( "for_album" ), album.toBookString() );
+				book.printNewLine();
 			} else if ( label != null ) {
 				book.printLabel( book.getBookString( "for" ), label );
+				book.printNewLine();
 			} else if ( film != null ) {
 				book.printLabel( book.getBookString( "for_film" ), film.toBookString() );
+				book.printNewLine();
 			} else if ( radio != null ) {
 				book.printLabel( book.getBookString( "for_radio" ), radio.toBookString() );
+				book.printNewLine();
 			} else if ( television != null ) {
 				book.printLabel( book.getBookString( "for_television" ), television.toBookString() );
+				book.printNewLine();
 			} else if ( other != null ) {
 				book.printLabel( book.getBookString( "for" ), other.getDescription() );
+				book.printNewLine();
 			}
-			book.printNewLine();
 
 			session.getLocation().writeToBook( book );
 

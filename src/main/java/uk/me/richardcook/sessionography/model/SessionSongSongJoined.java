@@ -25,6 +25,9 @@ public class SessionSongSongJoined implements Serializable {
 	@JoinColumn( name = "song" )
 	private SongJoinedBook song;
 
+	@Column( name = "parody" )
+	private boolean parody;
+
 	public Integer getSessionSong() {
 		return sessionSong;
 	}
@@ -74,6 +77,18 @@ public class SessionSongSongJoined implements Serializable {
 
 		if ( ! position.equals( sessionSongSong.getPosition() ) )
 			return false;
+
+		if( parody != sessionSongSong.isParody() )
+			return false;
+
 		return true;
+	}
+
+	public boolean isParody() {
+		return parody;
+	}
+
+	public void setParody( boolean parody ) {
+		this.parody = parody;
 	}
 }

@@ -126,14 +126,6 @@ public class TakeJoinedBook implements Serializable {
 		book.printLabel( book.getBookString( "length" ), length );
 		book.printNewLine();
 
-		if ( originalRelease != null && ! originalRelease.equals( keyRelease ) ) {
-			book.printLabel( book.getBookString( "original_release" ), originalRelease.toBookString( true, book ) );
-			book.printNewLine();
-		}
-		if ( keyRelease != null ) {
-			book.printLabel( book.getBookString( "key_release" ), keyRelease.toBookString( false, book ) );
-			book.printNewLine();
-		}
 		if ( film != null ) {
 			book.printLabel( book.getBookString( "film" ), film.toBookString() );
 			book.printNewLine();
@@ -144,6 +136,15 @@ public class TakeJoinedBook implements Serializable {
 		}
 		if ( television != null ) {
 			book.printLabel( book.getBookString( "television" ), television.toBookString() );
+			book.printNewLine();
+		}
+
+		if ( originalRelease != null && ! originalRelease.equals( keyRelease ) ) {
+			book.printLabel( book.getBookString( "original_release" ), originalRelease.toBookString( book ) );
+			book.printNewLine();
+		}
+		if ( keyRelease != null ) {
+			book.printLabel( book.getBookString( "key_release" ), keyRelease.toBookString( book ) );
 			book.printNewLine();
 		}
 	}

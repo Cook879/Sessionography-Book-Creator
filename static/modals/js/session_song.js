@@ -15,15 +15,16 @@ $( document ).ready( function () {
 				$( '#modal-session-song-master-' + i ).val( value.master );
 				$( '#modal-session-song-notes-' + i ).val( value.notes );
 				$( '#modal-session-song-position-' + i ).val( value.position );
+				$( '#modal-session-song-reprise-' + i ).prop( 'checked', value.reprise );
 
 				var songList = value.sessionSongSongs;
 
 				var j = i;
-				if ( songList.length > 1 ) {
+				if ( songList.length > 1 || songList[0].parody ) {
 					// TODO medleys
 					$( '#modal-session-song-medley-' + j ).prop( 'checked', true );
 					$( '#btn-song-medley-' + j ).attr( 'disabled', false );
-					$( '#modal-session-song-song-' + j ).val( 'Medley' );
+					$( '#modal-session-song-song-' + j ).val( 'Medley/Parody' );
 				} else {
 					if ( songList.length == 1 ) {
 						$.getJSON( '/api/song/' + songList[ 0 ].song, function ( result ) {
@@ -116,7 +117,7 @@ $( document ).ready( function () {
 						.attr( "id", "btn-song-medley-" + j )
 						.attr( "type", "button" )
 						.attr( "data-toggle", "modal" )
-						.text( "Medley" )
+						.text( "Medley/Parody" )
 						.attr( "disabled", true )
 						.click( function () {
 							$( "#div-modal-song-medley" ).load( 'song_medley.html', function () {
@@ -140,6 +141,13 @@ $( document ).ready( function () {
 						.addClass( "modal-session-song-position" )
 						.attr( "id", "modal-session-song-position-" + j )
 						.attr( "type", "number" )
+					)
+				)
+				.append( $( '<td>' )
+					.append( $( '<input>' )
+						.addClass( "modal-session-song-reprise" )
+						.attr( "id", "modal-session-song-reprise-" + j )
+						.attr( "type", "checkbox" )
 					)
 				)
 				.append( $( '<td>' )
@@ -223,10 +231,11 @@ $( document ).ready( function () {
 			var position = $( '#modal-session-song-position-' + k ).val();
 			var master = $( '#modal-session-song-master-' + k ).val();
 			var notes = $( '#modal-session-song-notes-' + k ).val();
+			var reprise = $( '#modal-session-song-reprise-' + k ).prop( 'checked' );
 
 			var id = $( '#modal-session-song-id-' + k ).val();
 
-			var object = { "session": session, "master": master, "notes": notes, "position": position };
+			var object = { "session": session, "master": master, "notes": notes, "position": position, "reprise": reprise };
 
 			if ( id == "" ) {
 				object[ 'id' ] = null;

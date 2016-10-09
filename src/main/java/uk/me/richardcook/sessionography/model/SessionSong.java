@@ -27,6 +27,9 @@ public class SessionSong implements Serializable {
 	@Column( name = "notes" )
 	private String notes;
 
+	@Column( name = "reprise" )
+	private boolean reprise;
+
 	@OneToMany( fetch = FetchType.EAGER, mappedBy = "sessionSong" )
 	@OrderBy( value = "position" )
 	private List<SessionSongSong> sessionSongSongs;
@@ -89,6 +92,9 @@ public class SessionSong implements Serializable {
 
 		if ( ( notes == null && sessionSong.getNotes() != null ) || ( notes != null && ! notes.equals( sessionSong.getNotes() ) ) )
 			return false;
+
+		if ( reprise != sessionSong.isReprise() )
+			return false;
 		return true;
 	}
 
@@ -98,5 +104,13 @@ public class SessionSong implements Serializable {
 
 	public void setSessionSongSongs( List<SessionSongSong> sessionSongSongs ) {
 		this.sessionSongSongs = sessionSongSongs;
+	}
+
+	public boolean isReprise() {
+		return reprise;
+	}
+
+	public void setReprise( boolean reprise ) {
+		this.reprise = reprise;
 	}
 }

@@ -60,7 +60,7 @@ public class BookCreationService {
 
 	public void createSongBook() throws Exception {
 		BookFile file = new BookFile( "song.tex", getBookStrings() );
-		file.setUpDocument( file.getBookString( "song-subtitle" ), true );
+		file.setUpDocument( file.getBookString( "song-subtitle" ), false );
 
 		bookSongService.generateSongs( file );
 

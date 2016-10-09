@@ -79,20 +79,20 @@ public class ReleaseView {
 		this.all = all;
 	}
 
-	public String toBookString( boolean original, BookFile book ) {
+	public String toBookString( BookFile book ) {
 		String str = BookFile.createBoldText( BookFile.createItalicText( title ) ) + " (";
 
 		if ( all ) {
-			str += label + ", " + book.getBookString( "all-releases" ) + ")";
+			str += book.getBookString( "all-releases" ) + ", " + label + ")";
 		} else {
-			// Only display the format if it's the original release
-			// or the key release isn't on CD
-			if ( original || format != null && !format.equals( book.getBookString( "skip-key-format" ) ) ) {
+			if ( format != null && year == null && label == null ) {
+				str += format;
+			} else {
 				str += format + ", ";
 			}
 
 			if ( year == null && label == null ) {
-				str += format + ")";
+				str += ")";
 			} else if ( label == null ) {
 				str += year + ")";
 			} else if ( year == null ) {

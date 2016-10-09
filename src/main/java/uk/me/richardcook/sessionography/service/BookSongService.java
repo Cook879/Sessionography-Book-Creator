@@ -63,16 +63,17 @@ public class BookSongService {
 			book.printSection( song.getTitle() );
 			song.writeToBook( book, false );
 			bookPersonRoleService.writeForSong( book, song.getId() );
+			book.printNewLine();
 
 			book.printBoldText( "Recordings" );
 			book.printNewLine();
-			book.printSuperTabular( 4 );
+			book.printLongTable( 'l', 4 );
 			book.printTabJoin( BookFile.createBoldText( book.getBookString( "date" ) ),
 					BookFile.createBoldText( book.getBookString( "type" ) ),
 					BookFile.createBoldText( book.getBookString( "chapter" ) ),
 					BookFile.createBoldText( book.getBookString( "notes" ) ) );
 
-			Map<Date, String> rows = new TreeMap<Date, String>();
+			Map<Date, Map<Integer, String>> rows = new TreeMap<Date, Map<Integer, String>>();
 			for ( SessionSongSong sessionSongSong : song.getSessionSongSongs() ) {
 				SessionSongJoined sessionSong = sessionSongs.get( sessionSongSong.getSessionSong() );
 				SessionView session = sessions.get( sessionSong.getSession() );
@@ -81,14 +82,37 @@ public class BookSongService {
 				if ( sessionSong.getSessionSongSongs().size() > 1 ) {
 					notes = book.getBookString( "medley" );
 				}
-				rows.put( session.getDate(), BookFile.createTabJoin( BookFile.dateFormat.format( session.getDate() ), session.getType(), Integer.toString( section.getPosition() ), notes ) );
+				if( sessionSongSong.isParody() ) {
+					if( !notes.equals( "" ) )
+						notes += " / ";
+					notes += book.getBookString( "parody" );
+				}
+				if( sessionSong.isReprise() ) {
+					if( !notes.equals( "" ) )
+						notes += " / ";
+					notes += book.getBookString( "reprise" );
+				}
+
+				Date date = session.getDate();
+				int position = sessionSong.getPosition();
+				String tableRow = BookFile.createTabJoin( BookFile.dateFormat.format( session.getDate() ), session.getType(), Integer.toString( section.getPosition()+1 ), notes );
+				if( rows.containsKey( date ) ) {
+					rows.get(date).put( position, tableRow );
+				} else {
+					TreeMap<Integer, String> posMap = new TreeMap<Integer, String>();
+					posMap.put(position, tableRow );
+					rows.put( date, posMap );
+				}
 			}
 
 			for ( Date date : rows.keySet() ) {
-				book.println( BookFile.removeSpecialCharacters( rows.get( date ) ) );
+				Map<Integer, String> posMap = rows.get(date);
+				for( Integer position : posMap.keySet() ) {
+					book.println( posMap.get( position ) );
+				}
 			}
 
-			book.printEndSuperTabular();
+			book.printEndLongTable();
 		}
 
 	}

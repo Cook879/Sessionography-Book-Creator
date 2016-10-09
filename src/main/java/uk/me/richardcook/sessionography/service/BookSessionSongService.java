@@ -33,16 +33,23 @@ public class BookSessionSongService {
 	public void writeForSession( BookFile book, int id ) {
 		List<SessionSongJoined> sessionSongs = findForSessionJoined( id );
 
+		if( sessionSongs.size() == 0 )
+			return;
+
 		for ( SessionSongJoined sessionSong : sessionSongs ) {
 			List<SessionSongSongJoined> sessionSongSongs = sessionSong.getSessionSongSongs();
 
-			book.println( sessionSong.toBookString(book.getBookString( "master" )) );
+			sessionSong.toBookString(book.getBookString( "master" ), book);
 
-			for ( SessionSongSongJoined sessionSongSong : sessionSongSongs ) {
+			for ( int i = 0; i < sessionSongSongs.size(); i++ ) {
+				SessionSongSongJoined sessionSongSong = sessionSongSongs.get(i);
 				SongJoinedBook song = sessionSongSong.getSong();
 				song.writeToBook( book, sessionSongSongs.size() > 1 );
 				bookPersonRoleService.writeForSong( book, song.getId() );
+				if( i+1 == sessionSongSongs.size() && sessionSongSongs.size() > 1 )
+					book.printNewLine();
 			}
+
 			bookPersonRoleService.writeArrangers( book, sessionSong.getId(), sessionSong.getSession() );
 
 			for ( TakeJoinedBook take : sessionSong.getTakes() ) {
@@ -50,8 +57,7 @@ public class BookSessionSongService {
 			}
 
 			String notes = sessionSong.getNotes();
-			if ( notes != null ) {
-				book.printNewLine();
+			if ( notes != null && !notes.equals( "" ) ) {
 				book.printNewLine();
 				book.printLabel( book.getBookString( "note" ), notes );
 			}

@@ -324,9 +324,10 @@ $( document ).ready( function () {
 	function processSubmit( data ) {
 		$id = data.id;
 		$( '#modal-session-id' ).val( data.id );
-		console.log("WORK BITHC");
 		$( '#btn-session-songs' ).attr( 'disabled', false );
 		$( '#btn-session-people' ).attr( 'disabled', false );
+
+		$( '.modal-body-success' ).append( $( '<p>' ).text( "Session saved, id is " + data.id ) );
 	}
 
 	$( 'input[type="radio"]' ).on( 'change', function ( e ) {

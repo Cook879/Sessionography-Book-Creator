@@ -81,7 +81,7 @@ public class SourceView implements Serializable {
 		}
 
 		if ( fromThe )
-			book.printLabel( book.getBookString( "from_the " ) + type, title );
+			book.printLabel( book.getBookString( "from_the" ) + " " + type, title );
 		else
 			book.printLabel( type, title );
 	}
