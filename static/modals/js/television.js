@@ -1,4 +1,3 @@
-
 $( document ).ready( function () {
 
 	var $id = $( '#modal-television-id' ).val();

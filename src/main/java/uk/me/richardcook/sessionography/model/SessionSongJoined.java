@@ -4,7 +4,6 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
-import java.awt.print.Book;
 import java.io.Serializable;
 import java.util.List;
 
@@ -106,7 +105,7 @@ public class SessionSongJoined implements Serializable {
 			for ( int i = 0; i < sessionSongSongs.size(); i++ ) {
 				SongJoinedBook song = sessionSongSongs.get( i ).getSong();
 				songTitles += song.getShortTitle();
-				if ( !shortTitle && sessionSongSongs.get(i).isParody() ) {
+				if ( ! shortTitle && sessionSongSongs.get( i ).isParody() ) {
 					songTitles += " (" + book.getBookString( "parody" ) + ")";
 				}
 				if ( i != sessionSongSongs.size() - 1 ) {
@@ -115,16 +114,16 @@ public class SessionSongJoined implements Serializable {
 			}
 		} else {
 			songTitles = sessionSongSongs.get( 0 ).getSong().getTitle();
-			if( !shortTitle && sessionSongSongs.get(0).isParody() )
+			if ( ! shortTitle && sessionSongSongs.get( 0 ).isParody() )
 				songTitles += " (" + book.getBookString( "parody" ) + ")";
 		}
 
 		return songTitles;
 	}
 
-	public void toBookString(String masterStr, BookFile book) {
-		String songTitles = toString(book, false);
-		if( reprise )
+	public void toBookString( String masterStr, BookFile book ) {
+		String songTitles = toString( book, false );
+		if ( reprise )
 			songTitles += " (" + book.getBookString( "reprise" ) + ")";
 		if ( master != null )
 			book.printSubSection( songTitles + " (" + masterStr + " #" + master + ")" );
@@ -132,10 +131,10 @@ public class SessionSongJoined implements Serializable {
 			book.printSubSection( songTitles );
 	}
 
-	public String toShortString(BookFile book) {
+	public String toShortString( BookFile book ) {
 		String toString;
 		if ( sessionSongSongs.size() > 1 )
-			toString = toString(book, true);
+			toString = toString( book, true );
 		else
 			toString = sessionSongSongs.get( 0 ).getSong().getShortTitle();
 		if ( toString.length() > 35 )

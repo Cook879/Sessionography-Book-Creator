@@ -59,7 +59,7 @@ public class SessionController {
 
 		sessionService.update( session );
 
-		Session session2 = sessionService.find( id);
+		Session session2 = sessionService.find( id );
 		if ( session2.equals( session ) )
 			return session2;
 		return new ResponseEntity( "Failed to submit - reason unknown", HttpStatus.BAD_REQUEST );

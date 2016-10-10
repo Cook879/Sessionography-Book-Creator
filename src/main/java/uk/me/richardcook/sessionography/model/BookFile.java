@@ -58,13 +58,13 @@ public class BookFile extends PrintWriter {
 	//http://stackoverflow.com/questions/10813154/converting-number-to-letter
 	public static String getCharForNumber( int i ) {
 		i--;
-		int quot = i/26;
-		int rem = i%26;
-		char letter = (char)((int)'a' + rem);
-		if( quot == 0 ) {
-			return ""+letter;
+		int quot = i / 26;
+		int rem = i % 26;
+		char letter = (char) ( (int) 'a' + rem );
+		if ( quot == 0 ) {
+			return "" + letter;
 		} else {
-			return getCharForNumber(quot) + letter;
+			return getCharForNumber( quot ) + letter;
 		}
 	}
 
@@ -123,8 +123,8 @@ public class BookFile extends PrintWriter {
 	}
 
 	public static String createTabJoin( String string1, String string2, String string3, String string4 ) {
-		return removeSpecialCharacters(string1) + " & " + removeSpecialCharacters(string2) + " & " +
-				       removeSpecialCharacters(string3) + " & " + removeSpecialCharacters(string4) + " \\\\";
+		return removeSpecialCharacters( string1 ) + " & " + removeSpecialCharacters( string2 ) + " & " +
+				       removeSpecialCharacters( string3 ) + " & " + removeSpecialCharacters( string4 ) + " \\\\";
 	}
 
 	public static String createBeginFootnoteSize() {
@@ -168,8 +168,8 @@ public class BookFile extends PrintWriter {
 		//string = string.replaceAll( "~", "\\textasciitilde" );
 
 		// And we want some accents
-		string = string.replaceAll( "ñ", "\\\\~{n}");
-		string = string.replaceAll( "ë", "\\\\\"{e}");
+		string = string.replaceAll( "ñ", "\\\\~{n}" );
+		string = string.replaceAll( "ë", "\\\\\"{e}" );
 		string = string.replaceAll( "à", "\\\\`{a}" );
 		return string.replaceAll( "é", "\\\\'{e}" );
 	}
@@ -185,8 +185,8 @@ public class BookFile extends PrintWriter {
 		println( "\\usepackage[T1]{fontenc}" );
 		println( "\\usepackage{titling}" );
 		println( "\\usepackage{alphalph}" );
-		println ("\\usepackage{longtable}" );
-		println ("\\usepackage{hyperref}" );
+		println( "\\usepackage{longtable}" );
+		println( "\\usepackage{hyperref}" );
 
 		getStyleRules();
 
@@ -202,28 +202,28 @@ public class BookFile extends PrintWriter {
 
 		println( "\\maketitle" );
 
-		if( twoCols )
+		if ( twoCols )
 			println( "\\onecolumn" );
 		// get copyright stuff
 		printCopyright();
 
 		// Check acknowledgments
 		String acknowledgements = getBookString( "acknowledgements" );
-		if( !acknowledgements.equals( "" ) ) {
+		if ( ! acknowledgements.equals( "" ) ) {
 			printNewPage();
-			println( "\\section*{ " + getBookString("acknowledgements-title") + "}" );
-			println(removeSpecialCharacters( acknowledgements));
+			println( "\\section*{ " + getBookString( "acknowledgements-title" ) + "}" );
+			println( removeSpecialCharacters( acknowledgements ) );
 		}
 
 		println( "\\tableofcontents" );
 
-		if( twoCols )
+		if ( twoCols )
 			println( "\\twocolumn" );
 
 		println( "\\pagenumbering{arabic}" );
 
-		printChapter( getBookString( "introduction-title" )  );
-		println( removeSpecialCharacters( getBookString( "introduction" )));
+		printChapter( getBookString( "introduction-title" ) );
+		println( removeSpecialCharacters( getBookString( "introduction" ) ) );
 
 	}
 
@@ -234,15 +234,15 @@ public class BookFile extends PrintWriter {
 		printNewLine();
 		printNewLine();
 
-		println( "Book structure and layout \\copyright \\the\\year \\ Richard Cook.");
+		println( "Book structure and layout \\copyright \\the\\year \\ Richard Cook." );
 		println( "The software used to create this book is released under the Creative Commons Attribution-ShareAlike 4.0 International license. " +
 				         "This means that you can use and adapt the software however you like, even commercially, as long as you attribute the original, " +
-						 " indicating what changes were made, and share it under the Creative Commons Attribution-ShareAlike license as well." );
+				         " indicating what changes were made, and share it under the Creative Commons Attribution-ShareAlike license as well." );
 
 		printNewLine();
 		printNewLine();
 
-		println( "You can obtain the software to make your own book from ");
+		println( "You can obtain the software to make your own book from " );
 		println( "\\url{http://www.richardcook.me.uk/sessionography}" );
 		println( "Using this software to make your own book? Let me know at \\href{mailto:sessionography@richardcook.me.uk}{ \\nolinkurl{sessionography@richardcook.me.uk} }" );
 		println( "Need help, found some bugs or have feature requests? Email \\href{mailto:sessionography@richardcook.me.uk}{ \nolinkurl{sessionography@richardcook.me.uk} }" );
@@ -350,6 +350,7 @@ public class BookFile extends PrintWriter {
 	public void printSuperTabular( int i ) {
 		println( createSuperTabular( i ) );
 	}
+
 	public void printLongTable( char align, int i ) {
 		println( createLongTable( align, i ) );
 	}

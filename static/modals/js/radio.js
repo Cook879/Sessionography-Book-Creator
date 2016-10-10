@@ -1,4 +1,3 @@
-
 $( document ).ready( function () {
 
 	var $id = $( '#modal-radio-id' ).val();
@@ -47,11 +46,11 @@ $( document ).ready( function () {
 	} );
 
 
-	$("#modal-radio-sponsor").on("change paste keyup", function() {
-		if($(this).val() == "" ) {
-			$("#modal-radio-sponsor-id").val("");
+	$( "#modal-radio-sponsor" ).on( "change paste keyup", function () {
+		if ( $( this ).val() == "" ) {
+			$( "#modal-radio-sponsor-id" ).val( "" );
 		}
-	});
+	} );
 
 	$( '#modal-radio-submit' ).click( function () {
 		var title = $( '#modal-radio-title' ).val();

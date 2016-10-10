@@ -33,20 +33,20 @@ public class BookSessionSongService {
 	public void writeForSession( BookFile book, int id ) {
 		List<SessionSongJoined> sessionSongs = findForSessionJoined( id );
 
-		if( sessionSongs.size() == 0 )
+		if ( sessionSongs.size() == 0 )
 			return;
 
 		for ( SessionSongJoined sessionSong : sessionSongs ) {
 			List<SessionSongSongJoined> sessionSongSongs = sessionSong.getSessionSongSongs();
 
-			sessionSong.toBookString(book.getBookString( "master" ), book);
+			sessionSong.toBookString( book.getBookString( "master" ), book );
 
 			for ( int i = 0; i < sessionSongSongs.size(); i++ ) {
-				SessionSongSongJoined sessionSongSong = sessionSongSongs.get(i);
+				SessionSongSongJoined sessionSongSong = sessionSongSongs.get( i );
 				SongJoinedBook song = sessionSongSong.getSong();
 				song.writeToBook( book, sessionSongSongs.size() > 1 );
 				bookPersonRoleService.writeForSong( book, song.getId() );
-				if( i+1 == sessionSongSongs.size() && sessionSongSongs.size() > 1 )
+				if ( i + 1 == sessionSongSongs.size() && sessionSongSongs.size() > 1 )
 					book.printNewLine();
 			}
 
@@ -57,7 +57,7 @@ public class BookSessionSongService {
 			}
 
 			String notes = sessionSong.getNotes();
-			if ( notes != null && !notes.equals( "" ) ) {
+			if ( notes != null && ! notes.equals( "" ) ) {
 				book.printNewLine();
 				book.printLabel( book.getBookString( "note" ), notes );
 			}

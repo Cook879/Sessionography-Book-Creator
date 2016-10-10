@@ -77,7 +77,7 @@ public class SessionSongSong implements Serializable {
 		if ( ! position.equals( sessionSongSong.getPosition() ) )
 			return false;
 
-		if( parody != sessionSongSong.isParody() )
+		if ( parody != sessionSongSong.isParody() )
 			return false;
 		return true;
 	}

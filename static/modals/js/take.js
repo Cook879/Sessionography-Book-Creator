@@ -1,4 +1,3 @@
-
 $( document ).ready( function () {
 
 	var $id = $( '#modal-take-id' ).val();
@@ -190,38 +189,38 @@ $( document ).ready( function () {
 	} );
 
 
-	$("#modal-take-original-release").on("change paste keyup", function() {
-		if($(this).val() == "" ) {
-			$("#modal-take-original-release-id").val("");
+	$( "#modal-take-original-release" ).on( "change paste keyup", function () {
+		if ( $( this ).val() == "" ) {
+			$( "#modal-take-original-release-id" ).val( "" );
 		}
-	});
+	} );
 
 
-	$("#modal-take-key-release").on("change paste keyup", function() {
-		if($(this).val() == "" ) {
-			$("#modal-take-key-release-id").val("");
+	$( "#modal-take-key-release" ).on( "change paste keyup", function () {
+		if ( $( this ).val() == "" ) {
+			$( "#modal-take-key-release-id" ).val( "" );
 		}
-	});
+	} );
 
 
-	$("#modal-take-film").on("change paste keyup", function() {
-		if($(this).val() == "" ) {
-			$("#modal-take-film-id").val("");
+	$( "#modal-take-film" ).on( "change paste keyup", function () {
+		if ( $( this ).val() == "" ) {
+			$( "#modal-take-film-id" ).val( "" );
 		}
-	});
+	} );
 
 
-	$("#modal-take-radio").on("change paste keyup", function() {
-		if($(this).val() == "" ) {
-			$("#modal-take-radio-id").val("");
+	$( "#modal-take-radio" ).on( "change paste keyup", function () {
+		if ( $( this ).val() == "" ) {
+			$( "#modal-take-radio-id" ).val( "" );
 		}
-	});
+	} );
 
 
-	$("#modal-take-television").on("change paste keyup", function() {
-		if($(this).val() == "" ) {
-			$("#modal-take-television-id").val("");
+	$( "#modal-take-television" ).on( "change paste keyup", function () {
+		if ( $( this ).val() == "" ) {
+			$( "#modal-take-television-id" ).val( "" );
 		}
-	});
+	} );
 } );
 

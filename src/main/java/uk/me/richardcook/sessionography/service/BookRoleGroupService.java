@@ -55,8 +55,8 @@ class BookRoleGroupService {
 
 				numberSoFar++;
 
-				if( numberSoFar == 3*NUMBER_PER_COLUMN ) {
-					printPage(book, column1, column2, column3);
+				if ( numberSoFar == 3 * NUMBER_PER_COLUMN ) {
+					printPage( book, column1, column2, column3 );
 					column1 = new ArrayList<String>();
 					column2 = new ArrayList<String>();
 					column3 = new ArrayList<String>();
@@ -66,11 +66,11 @@ class BookRoleGroupService {
 				}
 			}
 		}
-		printPage(book, column1, column2, column3);
+		printPage( book, column1, column2, column3 );
 
 	}
 
-	private void printPage(BookFile book, List<String> column1, List<String> column2, List<String> column3) {
+	private void printPage( BookFile book, List<String> column1, List<String> column2, List<String> column3 ) {
 		book.printBeginFootnoteSize();
 		book.printSuperTabular( 6 );
 

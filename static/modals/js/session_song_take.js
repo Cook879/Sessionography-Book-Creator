@@ -1,4 +1,3 @@
-
 $( document ).ready( function () {
 
 	// i is the number of people so far

@@ -1,4 +1,3 @@
-
 $( document ).ready( function () {
 
 	var $id = $( '#modal-release-id' ).val();
@@ -90,11 +89,11 @@ $( document ).ready( function () {
 	} );
 
 
-	$("#modal-release-label").on("change paste keyup", function() {
-		if($(this).val() == "" ) {
-			$("#modal-release-label-id").val("");
+	$( "#modal-release-label" ).on( "change paste keyup", function () {
+		if ( $( this ).val() == "" ) {
+			$( "#modal-release-label-id" ).val( "" );
 		}
-	});
+	} );
 } );
 
 function getFormats( providedVal ) {

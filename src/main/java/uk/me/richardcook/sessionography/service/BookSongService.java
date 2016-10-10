@@ -82,32 +82,32 @@ public class BookSongService {
 				if ( sessionSong.getSessionSongSongs().size() > 1 ) {
 					notes = book.getBookString( "medley" );
 				}
-				if( sessionSongSong.isParody() ) {
-					if( !notes.equals( "" ) )
+				if ( sessionSongSong.isParody() ) {
+					if ( ! notes.equals( "" ) )
 						notes += " / ";
 					notes += book.getBookString( "parody" );
 				}
-				if( sessionSong.isReprise() ) {
-					if( !notes.equals( "" ) )
+				if ( sessionSong.isReprise() ) {
+					if ( ! notes.equals( "" ) )
 						notes += " / ";
 					notes += book.getBookString( "reprise" );
 				}
 
 				Date date = session.getDate();
 				int position = sessionSong.getPosition();
-				String tableRow = BookFile.createTabJoin( BookFile.dateFormat.format( session.getDate() ), session.getType(), Integer.toString( section.getPosition()+1 ), notes );
-				if( rows.containsKey( date ) ) {
-					rows.get(date).put( position, tableRow );
+				String tableRow = BookFile.createTabJoin( BookFile.dateFormat.format( session.getDate() ), session.getType(), Integer.toString( section.getPosition() + 1 ), notes );
+				if ( rows.containsKey( date ) ) {
+					rows.get( date ).put( position, tableRow );
 				} else {
 					TreeMap<Integer, String> posMap = new TreeMap<Integer, String>();
-					posMap.put(position, tableRow );
+					posMap.put( position, tableRow );
 					rows.put( date, posMap );
 				}
 			}
 
 			for ( Date date : rows.keySet() ) {
-				Map<Integer, String> posMap = rows.get(date);
-				for( Integer position : posMap.keySet() ) {
+				Map<Integer, String> posMap = rows.get( date );
+				for ( Integer position : posMap.keySet() ) {
 					book.println( posMap.get( position ) );
 				}
 			}

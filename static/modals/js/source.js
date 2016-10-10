@@ -1,5 +1,3 @@
-
-
 var $sourceType;
 
 $( document ).ready( function () {

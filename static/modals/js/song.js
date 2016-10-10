@@ -1,4 +1,3 @@
-
 $( document ).ready( function () {
 
 	var $id = $( '#modal-song-id' ).val();
@@ -116,17 +115,17 @@ $( document ).ready( function () {
 		}
 	} );
 
-	$("#modal-song-source").on("change paste keyup", function() {
-		if($(this).val() == "" ) {
-			$("#modal-song-source-id").val("");
+	$( "#modal-song-source" ).on( "change paste keyup", function () {
+		if ( $( this ).val() == "" ) {
+			$( "#modal-song-source-id" ).val( "" );
 		}
-	});	
-	
-	$("#modal-song-source2").on("change paste keyup", function() {
-		if($(this).val() == "" ) {
-			$("#modal-song-source2-id").val("");
+	} );
+
+	$( "#modal-song-source2" ).on( "change paste keyup", function () {
+		if ( $( this ).val() == "" ) {
+			$( "#modal-song-source2-id" ).val( "" );
 		}
-	});
+	} );
 
 } );
 

@@ -29,7 +29,7 @@ public class BookPersonRoleService {
 	public List<SessionSongPersonView> findForSession( int id ) {
 		// Get session song ids for that session
 		List<Integer> sessionSongIds = sessionSongDao.findIdsForSession( id );
-		if( sessionSongIds.size() == 0 )
+		if ( sessionSongIds.size() == 0 )
 			return null;
 		return personRoleDao.findForSessionView( sessionSongIds );
 	}
@@ -45,7 +45,7 @@ public class BookPersonRoleService {
 	// id is session id if type == musician or arranger, song if type == song
 	public Map<Integer, Integer> writeToBook( BookFile book, List<? extends PersonRole> personRoles, int type, int id ) {
 
-		if( personRoles == null )
+		if ( personRoles == null )
 			return null;
 
 		Map<RoleView, Map<Integer, Person>> roleMap = new HashMap<RoleView, Map<Integer, Person>>();
@@ -139,9 +139,9 @@ public class BookPersonRoleService {
 	public void writeForSession( BookFile book, int id ) {
 		List<SessionSongPersonView> sessionSongPersonViews = findForSession( id );
 
-		if( sessionSongPersonViews == null )
+		if ( sessionSongPersonViews == null )
 			return;
-		
+
 		book.printSubSubSection( book.getBookString( "personnel" ) );
 		book.printBeginDescription();
 		book.printSetLength( "\\parskip", "0pt" );
@@ -150,7 +150,7 @@ public class BookPersonRoleService {
 
 		Map<Integer, Integer> noteMap = writeToBook( book, findForSession( id ), PERSON_ROLE_SESSION_SONG, id );
 
-		if( noteMap != null )
+		if ( noteMap != null )
 			writeNotes( book, noteMap );
 
 		book.printEndDescription();

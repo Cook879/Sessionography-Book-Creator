@@ -21,10 +21,10 @@ $( document ).ready( function () {
 			$( '#modal-session-song-person-exceptions-letter-' + value.id ).text( letters[ value.id ] );
 		} );
 
-		if( $songs[0] == "" ) {
-			$.each( $ids, function(index,value) {
+		if ( $songs[ 0 ] == "" ) {
+			$.each( $ids, function ( index, value ) {
 				$( '#modal-session-song-person-exceptions-check-' + value ).prop( 'checked', true );
-			});
+			} );
 		}
 	} );
 
@@ -60,13 +60,13 @@ $( document ).ready( function () {
 		var result = '';
 		$.each( $ids, function ( index, value ) {
 			var checked = $( '#modal-session-song-person-exceptions-check-' + value ).prop( 'checked' );
-			if( checked ) {
+			if ( checked ) {
 				if ( result != '' )
 					result += '-';
 				result += value;
 			}
 		} );
-		$('#modal-session-song-person-songs-'+$callerId).val(result);
+		$( '#modal-session-song-person-songs-' + $callerId ).val( result );
 		$( "#modal-session-song-person-exceptions-cancel" ).trigger( "click" );
 
 	} );

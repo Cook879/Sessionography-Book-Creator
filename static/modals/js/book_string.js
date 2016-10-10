@@ -13,7 +13,7 @@ $( document ).ready( function () {
 		} );
 	} );
 
-	function makeTableRow( ) {
+	function makeTableRow() {
 		var j = i;
 		$( '#modal-book-string-table' ).find( 'tbody' )
 			.append( $( '<tr>' )
@@ -27,7 +27,7 @@ $( document ).ready( function () {
 						.addClass( "modal-book-string-name" )
 						.attr( "id", "modal-book-string-name-" + j )
 						.attr( "type", "text" )
-						.attr( "disabled", "true")
+						.attr( "disabled", "true" )
 					)
 				)
 				.append( $( '<td>' )
@@ -48,7 +48,7 @@ $( document ).ready( function () {
 
 			var object = { "id": id, "name": name, "value": value };
 
-			ajaxRequest( '/api/book_string/'+id, 'PUT', object, $( '#modal-book-string-success' ), $( '#modal-book-string-error' ), processSubmit );
+			ajaxRequest( '/api/book_string/' + id, 'PUT', object, $( '#modal-book-string-success' ), $( '#modal-book-string-error' ), processSubmit );
 		}
 	} );
 

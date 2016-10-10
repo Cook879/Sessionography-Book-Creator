@@ -1,4 +1,3 @@
-
 var $rollGroupValue;
 
 $( document ).ready( function () {

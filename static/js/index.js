@@ -1,4 +1,3 @@
-
 $( document ).ready( function () {
 	$( '#btn-session-edit' ).click( function () {
 		var id = $( '#index-session-id' ).val();

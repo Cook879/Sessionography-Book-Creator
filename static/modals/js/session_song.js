@@ -1,4 +1,3 @@
-
 $( document ).ready( function () {
 
 	// i is the number of session-songs so far
@@ -20,7 +19,7 @@ $( document ).ready( function () {
 				var songList = value.sessionSongSongs;
 
 				var j = i;
-				if ( songList.length > 1 || songList[0].parody ) {
+				if ( songList.length > 1 || songList[ 0 ].parody ) {
 					// TODO medleys
 					$( '#modal-session-song-medley-' + j ).prop( 'checked', true );
 					$( '#btn-song-medley-' + j ).attr( 'disabled', false );
@@ -235,7 +234,13 @@ $( document ).ready( function () {
 
 			var id = $( '#modal-session-song-id-' + k ).val();
 
-			var object = { "session": session, "master": master, "notes": notes, "position": position, "reprise": reprise };
+			var object = {
+				"session": session,
+				"master": master,
+				"notes": notes,
+				"position": position,
+				"reprise": reprise
+			};
 
 			if ( id == "" ) {
 				object[ 'id' ] = null;

@@ -1,4 +1,3 @@
-
 $( document ).ready( function () {
 
 	// i is the number of people so far
@@ -17,8 +16,8 @@ $( document ).ready( function () {
 
 			notes = result.notes;
 
-			if( result.sessionSongPersons.length == 0 ) {
-				for( var p = 0; p < 30; p++ ) {
+			if ( result.sessionSongPersons.length == 0 ) {
+				for ( var p = 0; p < 30; p++ ) {
 					createNewTableRow();
 				}
 			}
@@ -60,7 +59,7 @@ $( document ).ready( function () {
 	function makeTableRow( notes ) {
 		var j = i;
 		$( '#modal-session-song-person-table' ).find( 'tbody' )
-			.append( $( '<tr id="modal-session-song-person-table-row-'+j+'">' )
+			.append( $( '<tr id="modal-session-song-person-table-row-' + j + '">' )
 				.append( $( '<td>' )
 					.append( $( '<input>' )
 						.addClass( "modal-session-song-person-person-id" )
@@ -167,7 +166,7 @@ $( document ).ready( function () {
 							$( "#div-modal-session-song-person-exceptions" ).load( 'session_song_person_exceptions.html', function () {
 								$( '#modal-session-song-person-exceptions-caller' ).val( j );
 								$( '#modal-session-song-person-exceptions-id' ).val( $id );
-								$( '#modal-session-song-person-exceptions-values' ).val( $('#modal-session-song-person-songs-' + j).val() );
+								$( '#modal-session-song-person-exceptions-values' ).val( $( '#modal-session-song-person-songs-' + j ).val() );
 								$.getScript( 'js/session_song_person_exceptions.js' );
 								$( '#session-song-person-exceptions-modal' ).modal( 'show' );
 							} );
@@ -253,7 +252,7 @@ $( document ).ready( function () {
 	} );
 
 	$( '#modal-session-song-person-refresh' ).click( function () {
-		getNotes(null, null);
+		getNotes( null, null );
 	} );
 
 	function createNewTableRow() {
@@ -296,7 +295,7 @@ $( document ).ready( function () {
 		for ( var k = 1; k < i; k++ ) {
 			var person = $( '#modal-session-song-person-person-id-' + k ).val();
 			var role = $( '#modal-session-song-person-role-id-' + k ).val();
-			var note = $( '#modal-session-song-person-note-'+k).val();
+			var note = $( '#modal-session-song-person-note-' + k ).val();
 
 			if ( person == null || role == null ) {
 				continue;
@@ -323,14 +322,14 @@ $( document ).ready( function () {
 
 // Stolen from some stackoverflow.... TODO get link
 function getCharForNumber( i ) {
-	var ordA = 'a'.charCodeAt(0);
-	var ordZ = 'z'.charCodeAt(0);
+	var ordA = 'a'.charCodeAt( 0 );
+	var ordZ = 'z'.charCodeAt( 0 );
 	var len = ordZ - ordA + 1;
 
 	var s = "";
-	while(i >= 0) {
-		s = String.fromCharCode(i % len + ordA) + s;
-		i = Math.floor(i / len) - 1;
+	while ( i >= 0 ) {
+		s = String.fromCharCode( i % len + ordA ) + s;
+		i = Math.floor( i / len ) - 1;
 	}
 	return s;
 
