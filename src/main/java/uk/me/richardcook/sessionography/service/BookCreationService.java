@@ -30,7 +30,7 @@ public class BookCreationService {
 
 	public void createMainBook() throws Exception {
 		BookFile file = new BookFile( "book.tex", getBookStrings() );
-		file.setUpDocument( null, false );
+		file.setUpDocument( null, false, true );
 
 		bookSectionService.writeAll( file );
 
@@ -40,7 +40,7 @@ public class BookCreationService {
 
 	public void createPersonBook() throws Exception {
 		BookFile file = new BookFile( "people.tex", getBookStrings() );
-		file.setUpDocument( file.getBookString( "people-subtitle" ), true );
+		file.setUpDocument( file.getBookString( "people-subtitle" ), true, false );
 
 		bookRoleGroupService.createAnnotationList( file );
 
@@ -60,7 +60,7 @@ public class BookCreationService {
 
 	public void createSongBook() throws Exception {
 		BookFile file = new BookFile( "song.tex", getBookStrings() );
-		file.setUpDocument( file.getBookString( "song-subtitle" ), false );
+		file.setUpDocument( file.getBookString( "song-subtitle" ), false, false );
 
 		bookSongService.generateSongs( file );
 

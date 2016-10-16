@@ -78,8 +78,8 @@ public class BookPersonService {
 			}
 
 			for ( SessionSongPersonDetails sessionSongPersonDetails : sessionSongPersonDetailses ) {
-				book.printTabJoin( BookFile.dateFormat.format( sessionSongPersonDetails.getDate() ),
-						sessionSongs.get( sessionSongPersonDetails.getSessionSong() ).toShortString( book ),
+				book.printTabJoin( BookFile.dateFormat.format( sessionSongPersonDetails.getDate() ) + " (" + Integer.toString(sessionSongPersonDetails.getSection() ) + ")",
+						BookFile.removeSpecialCharacters( sessionSongs.get( sessionSongPersonDetails.getSessionSong() ).toShortString( book ) ),
 						sessionSongPersonDetails.getRole() );
 			}
 
@@ -126,7 +126,11 @@ public class BookPersonService {
 
 			for ( SongPersonDetails songPersonDetails : songPersonDetailses ) {
 				Song song = songs.get( songPersonDetails.getSong() );
-				book.printTabJoin( song.getYear(), song.getShortTitle(), songPersonDetails.getRole() );
+
+				String title = song.getShortTitle();
+				if ( title.length() > 31 )
+						title = title.substring( 0, 30 ) + "\\ldots";
+				book.printTabJoin( song.getYear(), BookFile.removeSpecialCharacters( title ), songPersonDetails.getRole() );
 			}
 
 		}

@@ -137,8 +137,8 @@ public class SessionSongJoined implements Serializable {
 			toString = toString( book, true );
 		else
 			toString = sessionSongSongs.get( 0 ).getSong().getShortTitle();
-		if ( toString.length() > 35 )
-			return toString.substring( 0, 34 ) + "\\ldots";
+		if ( toString.length() > 31 )
+			return toString.substring( 0, 30 ) + "\\ldots";
 		return toString;
 	}
 

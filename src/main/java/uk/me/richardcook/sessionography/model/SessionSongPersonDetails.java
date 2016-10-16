@@ -43,8 +43,14 @@ public class SessionSongPersonDetails {
 	@Column( name = "date" )
 	private Date date;
 
-	public SessionSongPersonDetails() {
-	}
+	@Column( name = "section" )
+	private int section;
+
+	@Column( name = "role_position" )
+	private int rolePosition;
+
+	@Column( name = "role_group_position" )
+	private int roleGroupPosition;
 
 	public int getSessionSong() {
 		return sessionSong;
@@ -116,5 +122,29 @@ public class SessionSongPersonDetails {
 
 	public void setId( int id ) {
 		this.id = id;
+	}
+
+	public int getSection() {
+		return section;
+	}
+
+	public void setSection( int section ) {
+		this.section = section;
+	}
+
+	public int getRolePosition() {
+		return rolePosition;
+	}
+
+	public void setRolePosition( int rolePosition ) {
+		this.rolePosition = rolePosition;
+	}
+
+	public int getRoleGroupPosition() {
+		return roleGroupPosition;
+	}
+
+	public void setRoleGroupPosition( int roleGroupPosition ) {
+		this.roleGroupPosition = roleGroupPosition;
 	}
 }

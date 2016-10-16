@@ -38,7 +38,7 @@ public class PersonRoleDaoImpl implements PersonRoleDao {
 
 	public List<SessionSongPersonDetails> findForPerson( int id, boolean group, boolean arranger ) {
 		return entityManager.createQuery( "SELECT e FROM SessionSongPersonDetails e WHERE e.person = :person" +
-				                                  " AND e.group = :group AND e.arranger = :arranger" )
+				                                  " AND e.group = :group AND e.arranger = :arranger ORDER BY e.date, e.sessionSongPosition, e.roleGroupPosition, e.rolePosition" )
 				       .setParameter( "person", id )
 				       .setParameter( "group", group )
 				       .setParameter( "arranger", arranger )
