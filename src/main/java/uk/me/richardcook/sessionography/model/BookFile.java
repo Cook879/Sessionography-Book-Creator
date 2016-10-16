@@ -174,7 +174,7 @@ public class BookFile extends PrintWriter {
 		return string.replaceAll( "é", "\\\\'{e}" );
 	}
 
-	public void setUpDocument( String subtitle, boolean twoCols ) throws Exception {
+	public void setUpDocument( String subtitle, boolean twoCols, boolean intro ) throws Exception {
 		if ( twoCols ) {
 			println( "\\documentclass[twocolumn]{book}" );
 		} else {
@@ -211,7 +211,7 @@ public class BookFile extends PrintWriter {
 		String acknowledgements = getBookString( "acknowledgements" );
 		if ( ! acknowledgements.equals( "" ) ) {
 			printNewPage();
-			println( "\\section*{ " + getBookString( "acknowledgements-title" ) + "}" );
+			println( "\\section*{" + getBookString( "acknowledgements-title" ) + "}" );
 			println( removeSpecialCharacters( acknowledgements ) );
 		}
 
@@ -222,13 +222,15 @@ public class BookFile extends PrintWriter {
 
 		println( "\\pagenumbering{arabic}" );
 
-		printChapter( getBookString( "introduction-title" ) );
-		println( removeSpecialCharacters( getBookString( "introduction" ) ) );
-
+		if( intro ) {
+			printChapter( getBookString( "introduction-title" ) );
+			println( removeSpecialCharacters( getBookString( "introduction" ) ) );
+		}
 	}
 
 	private void printCopyright() {
-		println( "Book contents \\copyright \\the\\year \\ " + removeSpecialCharacters( getBookString( "author" ) ) + ". All rights reserved" );
+		println( "Book contents \\copyright \\the\\year \\ " + removeSpecialCharacters( getBookString( "author" ) ) + ". All rights reserved." );
+		printNewLine();
 		println( getBookString( "book-copyright" ) );
 
 		printNewLine();
@@ -245,7 +247,7 @@ public class BookFile extends PrintWriter {
 		println( "You can obtain the software to make your own book from " );
 		println( "\\url{http://www.richardcook.me.uk/sessionography}" );
 		println( "Using this software to make your own book? Let me know at \\href{mailto:sessionography@richardcook.me.uk}{ \\nolinkurl{sessionography@richardcook.me.uk} }" );
-		println( "Need help, found some bugs or have feature requests? Email \\href{mailto:sessionography@richardcook.me.uk}{ \nolinkurl{sessionography@richardcook.me.uk} }" );
+		println( "Need help, found some bugs or have feature requests? Email \\href{mailto:sessionography@richardcook.me.uk}{ \\nolinkurl{sessionography@richardcook.me.uk} }" );
 
 		printNewLine();
 		printNewLine();
