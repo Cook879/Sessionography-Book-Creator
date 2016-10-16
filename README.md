@@ -1,4 +1,4 @@
-This is a tool to generator sessionography books, created to develop the book <a href="http://www.richardcook.me.uk/projects/sinatra.php" target="_blank"><i>Frank Sinatra: The Complete Recordings</i></a>.
+This is a tool to generator sessionography (and limited discography) books, created to develop the book <a href="http://www.richardcook.me.uk/projects/sinatra.php" target="_blank"><i>Frank Sinatra: The Complete Recordings</i></a>.
 
 For information on how to use the tool, and to download an executable jar, visit <a href="http://www.richardcook.me.uk/projects/sessionography.php" target="_blank">this page</a>.
 
