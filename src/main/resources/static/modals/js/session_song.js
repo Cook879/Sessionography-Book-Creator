@@ -19,7 +19,7 @@ $( document ).ready( function () {
 				var songList = value.sessionSongSongs;
 
 				var j = i;
-				if ( songList.length > 1 || songList[ 0 ].parody ) {
+				if ( songList.length > 1 || songList.length == 1 && songList[ 0 ].parody ) {
 					// TODO medleys
 					$( '#modal-session-song-medley-' + j ).prop( 'checked', true );
 					$( '#btn-song-medley-' + j ).attr( 'disabled', false );

@@ -69,6 +69,7 @@ $( document ).ready( function () {
 						)
 						.click( function () {
 							$( "#div-modal-take" ).load( 'take.html', function () {
+								$( '#modal-take-session-song-id' ).val( $( '#modal-session-song-take-session-song-id' ).val() );
 								$( '#modal-take-caller' ).val( j );
 								$.getScript( 'js/take.js' );
 								$( '#take-modal' ).modal( 'show' );
