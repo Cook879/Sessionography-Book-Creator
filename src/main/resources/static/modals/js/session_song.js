@@ -81,6 +81,7 @@ $( document ).ready( function () {
 						.attr( "id", "btn-song-edit-" + j )
 						.attr( "type", "button" )
 						.attr( "data-toggle", "modal" )
+						.attr( "tabindex", -1 )
 						.append( $( '<span>' )
 							.addClass( "glyphicon glyphicon-pencil" )
 						)
@@ -99,6 +100,7 @@ $( document ).ready( function () {
 						.attr( "id", "btn-song-new-" + j )
 						.attr( "type", "button" )
 						.attr( "data-toggle", "modal" )
+						.attr( "tabindex", -1 )
 						.append( $( '<span>' )
 							.addClass( "glyphicon glyphicon-plus" )
 						)
@@ -117,6 +119,7 @@ $( document ).ready( function () {
 						.attr( "type", "button" )
 						.attr( "data-toggle", "modal" )
 						.text( "Medley/Parody" )
+						.attr( "tabindex", -1 )
 						.attr( "disabled", true )
 						.click( function () {
 							$( "#div-modal-song-medley" ).load( 'song_medley.html', function () {
@@ -153,6 +156,7 @@ $( document ).ready( function () {
 					.append( $( '<textarea>' )
 						.addClass( "modal-session-song-notes" )
 						.attr( "id", "modal-session-song-notes-" + j )
+						.attr( "tabindex", -1 )
 					)
 				)
 				.append( $( '<td>' )
@@ -161,6 +165,7 @@ $( document ).ready( function () {
 						.attr( "id", "btn-take-" + j )
 						.attr( "type", "button" )
 						.attr( "data-toggle", "modal" )
+						.attr( "tabindex", -1 )
 						.text( "Edit Takes" )
 						.click( function () {
 							if ( $( "#modal-session-song-id-" + j ).val() != null && $( "#modal-session-song-id-" + j ).val() != '' ) {
@@ -181,6 +186,7 @@ $( document ).ready( function () {
 					.attr( "id", "btn-session-song-delete-" + j )
 					.attr( "type", "button" )
 					.attr( "data-toggle", "modal" )
+					.attr( "tabindex", -1 )
 					.append( $( '<span>' )
 						.addClass( "glyphicon glyphicon-trash" )
 					)
